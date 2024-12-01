@@ -27,7 +27,7 @@ jobs:
         run: npm run lint
       - name: build
         id: build
-        # run: build failing
+        # run: fail build
         run: npm run build:ui
       - name: test
         run: npm test
