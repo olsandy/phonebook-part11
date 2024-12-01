@@ -73,6 +73,10 @@ app.get('/info', (req, res) => {
   })
 })
 
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
+
 app.get('/api/persons/:id', (req, res, next) => {
   Person.findById(req.params.id)
     .then((person) => {
