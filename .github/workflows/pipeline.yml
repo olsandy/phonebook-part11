@@ -31,13 +31,13 @@ jobs:
         run: npm run build:ui
       - name: test
         run: npm test
-      ### - name: Trigger deployment
-      ###   if: ${{ github.event_name == 'push' && fromJson(env.noSkip) }}
-      ###   uses: sws2apps/render-deployment@main #consider using pin for dependabot auto update
-      ###   with:
-      ###     serviceId: ${{ secrets.RENDER_SERVICE_ID }}
-      ###     apiKey: ${{ secrets.RENDER_API_KEY }}
-      ###     multipleDeployment: false #optional, default true
+      - name: Trigger deployment
+        if: ${{ github.event_name == 'push' && fromJson(env.noSkip) }}
+        uses: sws2apps/render-deployment@main #consider using pin for dependabot auto update
+        with:
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          multipleDeployment: false #optional, default true
       - name: Bump version and push tag
         if: ${{ fromJson(env.noSkip) }}
         uses: anothrNick/github-tag-action@1.71.0
