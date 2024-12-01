@@ -7,7 +7,6 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\"",
     "build:ui": "rm -rf dist && cd frontend/ && npm run build && mv dist ../",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "lint": "eslint ."
   },
   "author": "Anders Olsson",
