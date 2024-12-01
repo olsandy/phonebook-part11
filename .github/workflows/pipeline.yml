@@ -44,3 +44,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+      - name: New version of Phonebook Part11 deployed!
+        if: ${{ success() && github.event_name == 'push' && fromJson(env.noSkip) }}
+        uses: stegzilla/discord-notify@v2
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Phonebook Part11 deployed!
+          message: "to\nhttps://phonebook-part11-18vn.onrender.com by ${{ github.event.pusher.name }}"
+          colour: '#45f542'
+      - name: Build failed!
+        if: ${{ failure() && github.event_name == 'push' && steps.build.conclusion == 'failure' }}
+        uses: stegzilla/discord-notify@v2
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Build failed
+          message: 'commit ${{ github.event.head_commit.url }} by ${{ github.event.sender.name }} broke the build'
+          colour: '#ff0303'
