@@ -26,6 +26,6 @@ jobs:
       - name: build
         id: build
         # run: build failing
-        run: npm run build
+        run: npm run build:ui
       - name: test
         run: npm test
